@@ -8,7 +8,7 @@ This repository contains the latest design for the small actuator including:
 - STL files for 3D printing
 - NodeMCU ESP32 for Lua firmware with touch module, pulse counter module, RMT TX module, and gpiomatrix module.
 - Lua code for actuator
-- Link to ChiliPeppr http://chilipeppr.com/arm workspace to control the actuator and to ChiliPeppr ESP32 for Lua workspace for uploading code to the ESP32 device
+- Link to ChiliPeppr http://chilipeppr.com/arm workspace to control the actuator and to ChiliPeppr ESP32 for Lua workspace for uploading code to the ESP32 device http://chilipeppr.com/esp32
 - Heat management test results
 - Youtube videos
 
@@ -43,6 +43,10 @@ http://chilipeppr.com/esp32
 
 ![alt text](lua/chilipeppr.png "")
 
+# Heat Test
+
+![alt text](images/heattest.png "")
+
 # Youtube Videos
 
 Part 1
@@ -57,4 +61,9 @@ https://www.youtube.com/watch?v=RdmdFIhCo4M
 ![alt text](https://img.youtube.com/vi/RdmdFIhCo4M/0.jpg "")
 
 Part 3
-(tbd)
+https://youtu.be/4o3d7_WZ_DQ
+
+![alt text](images/youtube.png "")
+
+
+

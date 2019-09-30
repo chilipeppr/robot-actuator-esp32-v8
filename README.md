@@ -63,7 +63,7 @@ https://www.youtube.com/watch?v=RdmdFIhCo4M
 Part 3
 https://youtu.be/4o3d7_WZ_DQ
 
-![alt text](images/youtube.png "")
+![alt text](https://img.youtube.com/vi/4o3d7_WZ_DQ/0.jpg  "")
 
 
 

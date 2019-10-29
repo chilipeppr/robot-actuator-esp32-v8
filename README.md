@@ -18,6 +18,8 @@ This actuator is based on the amazing design of Jeff Kerr's (LoboCNC on Thingive
 
 ![alt text](images/front-top.png "")
 
+![alt text](images/top2.png "")
+
 # Eagle Files
 
 The main PCB board in Eagle.
@@ -31,6 +33,16 @@ Bottom
 
 The touch PCB board in Eagle.
 ![alt text](images/eagle2.png "")
+
+# Ordering PCBs
+
+When ordering PCBs, keep in mind the thickness of the main PCB is 1.0 mm while the touch PCB is 1.2 mm. A white soldermask is recommended, but not important.
+
+Main PCB is 1.0 mm thickness
+![alt text](images/thickness-mainpcb.png "")
+
+Touch PCB is 1.2 mm thickness
+![alt text](images/thickness-touchpcb.png "")
 
 # Fusion 360
 

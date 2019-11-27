@@ -16,10 +16,9 @@ m.motor =  nil --require("jog_v2_drv8825")
 -- m.pinSleep = 0 -- ENN pin28 GPIO17 on esp32-wroom-32d, Orig 15 or 0
 -- m.pinPulseIn = 36 --2 -- 36 STEP Pulse In (Sens_VP), Pin 24 (Touch2)
 
-m.bits = 15
--- 50% duty is 2^bits
-m.dutyAtRun = (2^m.bits) --/2 --256 -- Since using 9bits 2^9=512, so 256 is 50% duty
-m.dutyStart = 0
+m.bits = 9
+m.dutyStart = 0 
+m.dutyAtRun = (2^m.bits)/2 --256 -- Since using 9bits 2^9=512, so 256 is 50% duty
 m.freqStart = 100
 
 m._freq = 100
@@ -95,14 +94,8 @@ function m.setfreq(fr, isOverrideAccel)
   end
   
   -- print("Setting freq to:", fr)
-  if fr < 3 then fr = 3 end 
-  if pcall(function() m._channel:setfreq(fr) end) then
-    -- was good
-    print("Freq:", fr)
-    m._lastFreq = fr
-  else 
-    print("Err setting freq:", fr)
-  end
+  pcall(m._channel:setfreq(fr))
+  m._lastFreq = fr
 end
 
 function m.setduty(duty)

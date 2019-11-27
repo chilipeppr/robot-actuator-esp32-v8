@@ -195,7 +195,6 @@ function m.set(r, g, b, isPad)
   local data = m.getColor(r, g, b) -- 24 bytes
   
   if m.isDebug then print("Blocks used for rgb val:", #data/4) end
-  
   -- if they want a delay, we can pad with the longest
   -- duration allowed by one memBlock
   if isPad then
@@ -204,19 +203,15 @@ function m.set(r, g, b, isPad)
     m.concat(data, {32767,0,32767,0}, (63-(#data/4)))
   end
 
-  m.tx:writeRawFill(data, 0) -- this is our first set of data, so set offset 0
-
   -- place in the end RMT signal  
-  -- m.concat(data, {0,0,0,0})
-  m.tx:writeRawFill({0,0,0,0})
+  m.concat(data, {0,0,0,0})
   
   if m.isDebug then print("sending N blocks to rmt for ws2812:", #data/4) end
 
   -- We are not sending enough data to use more than one block 
   -- or a callback, so this is a clean write 
   m.isSending = true
-  -- m.tx:writeRawStart(data)
-  m.tx:writeRawFillStart()
+  m.tx:writeRawStart(data)
 end 
 
 -- show one color, then show the other
@@ -235,14 +230,6 @@ function m.blink2nd()
   m._isBlink = false
   m.set(m.blink2ndVal[1], m.blink2ndVal[2], m.blink2ndVal[3])
   m.blink2ndVal = nil
-end
-
-function m.pulse(r, g, b)
-  m.blink(r, g, b,  30, 0, 30)
-end
-
-function m.fill(r, g, b)
-  m.set(r, g, b)
 end
 
 function m.concat(t1,t2,repCnt)

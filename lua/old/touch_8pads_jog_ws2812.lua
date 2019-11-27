@@ -55,7 +55,7 @@ function m.init(tbl)
     lvolt = touch.TOUCH_LVOLT_0V5, -- Touch sensor low reference voltage TOUCH_LVOLT_0V4, 
     hvolt = touch.TOUCH_HVOLT_2V7, -- Touch sensor high reference voltage TOUCH_HVOLT_2V4, 
     atten = touch.TOUCH_HVOLT_ATTEN_1V, -- High ref attenuation TOUCH_HVOLT_ATTEN_0V, 
-    isDebug = false
+    isDebug = true
   })
 
   -- pass in callback so we know when done sending, that
@@ -137,7 +137,7 @@ function m.onTouch(pads)
       m._centerBtnTouchStartTs.sec, m._centerBtnTouchStartTs.usec = time.get()
       m._isCenterBtnTouched = true
       -- m.isSending = true
-      m.led.set(100, 100, 100)
+      m.led.set(255, 255, 255)
       
       -- do callback if user asked us
       if m._cbOnCenterBtnTouch ~= nil then

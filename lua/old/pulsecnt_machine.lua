@@ -39,8 +39,8 @@ function m.init(tbl)
     m.pcnt:chan0Config(
       m.pinPulseInput, --pulse_gpio_num
       m.pinDir, --ctrl_gpio_num If no control is desired specify PCNT_PIN_NOT_USED 
-      pulsecnt.PCNT_COUNT_DIS, --pos_mode PCNT positive edge count mode
-      pulsecnt.PCNT_COUNT_INC, --neg_mode PCNT negative edge count mode
+      pulsecnt.PCNT_COUNT_INC, --pos_mode PCNT positive edge count mode
+      pulsecnt.PCNT_COUNT_DIS, --neg_mode PCNT negative edge count mode
       pulsecnt.PCNT_MODE_KEEP, --lctrl_mode Ctrl low PCNT_MODE_KEEP, PCNT_MODE_REVERSE, PCNT_MODE_DISABLE
       pulsecnt.PCNT_MODE_REVERSE, --hctrl_mode Ctrl high PCNT_MODE_KEEP, PCNT_MODE_REVERSE, PCNT_MODE_DISABLE
       m.stepLimitMin, --counter_l_lim [Range -32768 to 32767]
@@ -51,22 +51,14 @@ function m.init(tbl)
     m.pcnt:chan0Config(
       m.pinPulseInput, --pulse_gpio_num
       m.pinDir, --ctrl_gpio_num If no control is desired specify PCNT_PIN_NOT_USED 
-      pulsecnt.PCNT_COUNT_DIS, --pos_mode PCNT positive edge count mode
-      pulsecnt.PCNT_COUNT_INC, --neg_mode PCNT negative edge count mode
+      pulsecnt.PCNT_COUNT_INC, --pos_mode PCNT positive edge count mode
+      pulsecnt.PCNT_COUNT_DIS, --neg_mode PCNT negative edge count mode
       pulsecnt.PCNT_MODE_REVERSE, --lctrl_mode Ctrl low PCNT_MODE_KEEP, PCNT_MODE_REVERSE, PCNT_MODE_DISABLE
       pulsecnt.PCNT_MODE_KEEP, --hctrl_mode Ctrl high PCNT_MODE_KEEP, PCNT_MODE_REVERSE, PCNT_MODE_DISABLE
       m.stepLimitMin, --counter_l_lim [Range -32768 to 32767]
       m.stepLimitMax  --counter_h_lim [Range -32768 to 32767]
     )
   end
-  
-  -- Filter pulses. We are seeing some noise on the RMT TX hardware
-  -- that pcnt picks up, but the DRV8825 doesn't, which is good,
-  -- so this filter should be able to match what the stepper driver
-  -- sees as a step
-  -- 1023 filter = 0.0127875 ms / 12.7875 us
-  -- 1.9us is stepper motor response, so 1.9/0.0125 = 152 filter.
-  m.pcnt:setFilter(152) 
   
   -- Clear counting
   m.pcnt:clear()

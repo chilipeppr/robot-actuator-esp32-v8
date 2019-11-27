@@ -3,14 +3,14 @@
 local m = {}
 -- m = {}
 
-m.rmtstep = require("rmttx_stepper_v3")
+m.rmtstep = require("rmttx_stepper_v2")
 
 m.pcnt = nil -- pass in pulsecnt library
 m.motor = nil -- pass in motor library
 
-m.fr = 1000 -- default feedrate
-m.maxFr = 3000 -- max speed allowed
-m.accel = 1000 -- default steps per second
+m.fr = 100 -- default feedrate
+m.maxFr = 300 -- max speed allowed
+m.accel = 100 -- default steps per second
 m.maxAccel = 10000 -- max acceleration
 
 m.q = {} -- holds gcode queue
@@ -34,10 +34,6 @@ function m.init(tbl)
     cbOnDone = m.onMoveDone,
     pcnt = m.pcnt,
     motor = m.motor,
-    maxFr = m.maxFr,
-    maxAcc = m.maxAcc,
-    defaultFr = m.fr,
-    defaultAcc = m.accel,
   })
   
   -- set defaults
@@ -64,9 +60,9 @@ function m.runGcodeAbs(qItem)
   
   m._lastMoveWasSingleGcode = true
   
-  if qItem.Fr ~= nil then
+  if qItem.fr ~= nil then
     
-    local fr = qItem.Fr 
+    local fr = qItem.fr 
     
     -- check if beyond our allowed max feed
     if fr > m.maxFr then fr = m.maxFr end 
@@ -75,15 +71,15 @@ function m.runGcodeAbs(qItem)
     -- print("max speed: "..fr)
   end
   
-  if qItem.Acc ~= nil then
-    local acc = qItem.Acc
+  if qItem.acc ~= nil then
+    local acc = qItem.acc
     if acc > m.maxAccel then acc = m.maxAccel end
     m.rmtstep.setAcceleration(acc)
   end
   
-  -- print("step: "..qItem.Step)
+  -- print("step: "..qItem.step)
   -- m.motor.enable()
-  m.rmtstep.sendMoveAbs(qItem.Step)
+  m.rmtstep.sendMoveAbs(qItem.step)
 end
 
 function m.runGcodeRel()
@@ -111,9 +107,9 @@ function m.onNextItem()
   end
   
   local qItem = m.q[m.curItem]
-  if qItem.Fr ~= nil then
+  if qItem.fr ~= nil then
     
-    local fr = qItem.Fr 
+    local fr = qItem.fr 
     
     -- check if beyond our allowed max feed
     if fr > m.maxFr then fr = m.maxFr end 
@@ -122,8 +118,8 @@ function m.onNextItem()
     -- print("max speed: "..fr)
   end
   
-  -- print("step: "..qItem.Step)
-  m.rmtstep.sendMove(qItem.Step)
+  -- print("step: "..qItem.step)
+  m.rmtstep.sendMove(qItem.step)
   
 end
 

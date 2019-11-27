@@ -64,7 +64,6 @@ function m.init(tbl)
   
   if tbl ~= nil then
     if tbl.isInvert ~= nil then m.isInvert = tbl.isInvert end
-    if tbl.microSteps ~= nil then m.microSteps = tbl.microSteps end
     if tbl.isDebug == true then m.isDebug = true end
   end
     
@@ -172,15 +171,11 @@ function m.dirRev()
 end
 
 function m.dirToggle()
-  -- local dir
   if m._dir == m.DIR_FWD then
     m.dirRev()
-    return m.DIR_REV
   else
     m.dirFwd()
-    return m.DIR_FWD
   end
-  
 end
 
 function m.disable()

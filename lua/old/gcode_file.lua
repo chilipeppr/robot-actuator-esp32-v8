@@ -60,7 +60,6 @@ function m.write(line)
   
   m.openAppend()
   file.writeline(line)
-  m.close()
 end
 
 function m.wipe()
